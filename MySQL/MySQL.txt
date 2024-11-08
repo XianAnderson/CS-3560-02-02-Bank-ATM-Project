@@ -1,0 +1,1 @@
+For project formatting purposes, this folder will hold MySQL format files. This is so all our databases are the same, and we can easy present our project on any of our latops since they are in sync.

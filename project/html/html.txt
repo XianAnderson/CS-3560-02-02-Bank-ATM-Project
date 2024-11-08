@@ -1,0 +1,1 @@
+For project formatting purposes, this folder will hold all html files.

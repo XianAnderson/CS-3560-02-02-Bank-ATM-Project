@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM</title>
+</head>
+<body>
+    <h1>Example JS Fullstack</h1>
+    <textarea id="sqlQuery" rows="10" cols="100"></textarea>
+    <br><br>
+    <button onclick="executeQuery()">Run</button>
+    <pre id="output"></pre>
+    <script>
+        async function executeQuery() {
+            const sql = document.getElementById("sqlQuery").value;
+            const response = await fetch("/query", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ sql }),
+            });
+            const data = await response.json();
+            document.getElementById("output").textContent = JSON.stringify(data.results, null, 2);
+        }
+    </script>
+</body>
+
+</html>

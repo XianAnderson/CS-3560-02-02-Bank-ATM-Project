@@ -37,14 +37,14 @@ app.post('/', (req, res) => {
         
         if (results.length > 0) {
             if(results[0].PIN == PIN) {
-                console.error('success logging in');
+                console.log('success logging in');
                 res.render('loginRedirect',{accountId : results[0].accountId});
             } else {
-                console.error('wrong PIN');
+                console.log('wrong PIN');
                 res.render('index');
             }
         } else {
-            console.error('no card found with cardID');
+            console.log('no card found with cardID');
             res.render('index');
         }
     });

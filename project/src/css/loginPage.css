@@ -1,0 +1,44 @@
+/* loginPage.css */
+.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+}
+
+.login-container {
+    width: 400px;
+    padding: 20px;
+    background-color: #4169E1;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.bank-logo {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.error {
+    color: #ff4d4f;
+}

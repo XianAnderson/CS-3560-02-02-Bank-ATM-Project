@@ -1,0 +1,31 @@
+<!DOCTYPE html> <!-- Declares the document type as HTML -->
+<html lang="en"> <!-- Sets the language attribute to English for the document -->
+<head>
+    <meta charset="UTF-8"> <!-- Sets the character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design on mobile devices -->
+    <title>CECTL Bank - Login</title> <!-- Title of the web page displayed on the browser tab -->
+    <link rel="stylesheet" href="../css/loginPage.css"> <!-- Links to the CSS file for styling -->
+</head>
+<body>
+    <div class="container"> <!-- Main container holding both panels -->
+        <div class="left-panel"> <!-- Left panel for the logo and bank name -->
+            <img src="../images/monopolyMan.jpg" alt="Bank Logo" class="logo"> <!-- Bank logo image -->
+            <h1>CECTL BANK</h1> <!-- Bank name heading -->
+        </div>
+        <div class="right-panel"> <!-- Right panel for the login form -->
+            <div class="login-form"> <!-- Container for the login form -->
+                <h2>Welcome!</h2> <!-- Heading for the form -->
+                <form id="loginForm" onsubmit="return handleLogin(event)"> <!-- Form with an onsubmit event handler to handle login -->
+                    <label for="cardNumber">Card Number</label> <!-- Label for the card number input -->
+                    <input type="text" id="cardNumber" name="cardNumber" required> <!-- Input field for card number, required for form submission -->
+                    <label for="pinNumber">PIN Number</label> <!-- Label for the PIN input -->
+                    <input type="password" id="pinNumber" name="pinNumber" required> <!-- Input field for PIN, masked for security, required for form submission -->
+                    <button type="submit">SIGN IN</button> <!-- Submit button to trigger form submission -->
+                    <button type="button" onclick="clearForm()">CLEAR</button> <!-- Button to clear the form fields -->
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../javascript/loginPage.js"></script> <!-- Links to the JavaScript file for login functionality -->
+</body>
+</html>

@@ -22,10 +22,7 @@ app.post('/', (req, res) => {
     let PIN = req.body.PIN;
     console.log('trying login with',CardNum,PIN)
 
-    // HERE ARE INSTRUCTIONS ON HOW TO USE SQL QUERY!!!
-    // below is the sql query
-    // use ? in sql and then put the real variable in []
-    // everthing relating to the output of the query should be in the {}
+    // Make sure login is correct
     const sql = 'select accountId, pin from usercard where cardNumber = ?';
     db.query(sql, [CardNum], (err, results) => {
         if (err) {
@@ -56,7 +53,7 @@ app.get('/:accountId/home/', (req, res) => {
     });
 });
 
-// we should split each sub system into a router
+// split each sub system into a router
 const balanceRouter = require('./routes/balance');
 app.use('/:accountId/balance',balanceRouter);
 

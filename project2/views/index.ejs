@@ -19,9 +19,9 @@
 -->
 
 <head>
-    <meta charset="UTF-8"> <!-- Sets the character encoding for the document -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures the page is responsive on all devices -->
-    <title>Bank Login</title> <!-- Title of the page -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Login</title>
     <style>
         /* General reset */
         body, html {
@@ -116,41 +116,32 @@
     </style>
 </head>
 <body>
-
-<div class="container">
-    <!-- Left section for the bank logo -->
-    <div class="left-section">
-        <img src="./images/bankImage.png" alt="Bank Logo"> <!-- Displays the bank image -->
+    <div class="container">
+        <!-- Left Section for the Logo -->
+        <div class="left-section">
+            <img src="./images/bankImage2.png" alt="Bank Logo"> <!-- Bank logo -->
+        </div>
+        
+        <!-- Right Section for the Form -->
+        <div class="right-section">
+            <div class="close-btn">X</div> <!-- Close button -->
+            <h2>Welcome!</h2>
+            <form id="pinForm" action="/" method="post">
+                <div class="form-group">
+                    <label for="CardNum">Card Number</label>
+                    <input type="text" id="CardNum" name="CardNum" placeholder="Enter Card Number">
+                </div>
+                <div class="form-group">
+                    <label for="PIN">PIN</label>
+                    <input type="password" id="PIN" name="PIN" placeholder="Enter PIN Number">
+                </div>
+                <div class="button-group">
+                    <input type="submit" value="SIGN IN"> <!-- Submit button -->
+                    <button type="button" onclick="clearInputs()">CLEAR</button> <!-- Clear button -->
+                </div>
+            </form>
+        </div>
     </div>
-    
-    <!-- Right section for login form -->
-    <div class="right-section">
-        <div class="close-btn">X</div> <!-- Close button at the top right corner -->
-
-        <h2>Welcome!</h2> <!-- Main welcome heading -->
-        
-        <!-- Form group for card number input -->
-        <div class="form-group">
-            <label for="cardNumber">Card Number</label> <!-- Label for card number field -->
-            <input type="text" id="cardNumber" placeholder="Enter Card Number"> <!-- Card number input field -->
-        </div>
-
-        <!-- Form group for PIN number input -->
-        <div class="form-group">
-            <label for="pinNumber">PIN Number</label> <!-- Label for PIN number field -->
-            <input type="password" id="pinNumber" placeholder="Enter PIN Number"> <!-- PIN number input field -->
-        </div>
-        
-        <!-- Button group for Sign In and Clear buttons -->
-        <div class="button-group">
-            <button>SIGN IN</button> <!-- Sign In button -->
-            <button>CLEAR</button> <!-- Clear button -->
-        </div>
-        
-        <!-- Admin Login link at the bottom left of the section -->
-        <a href="#" class="admin-link">Admin Login</a>
-    </div>
-</div>
 
     <script>
         // Function to clear input fields

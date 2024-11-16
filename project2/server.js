@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
 const { dbconnect } = require('./dbConnection.js');

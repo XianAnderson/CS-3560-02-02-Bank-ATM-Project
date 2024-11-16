@@ -28,71 +28,70 @@
 -->
 
 <head>
-    <meta charset="UTF-8"> <!-- Sets character encoding -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsiveness -->
-    <title>Transaction Selection</title> <!-- Page title -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Selection</title>
     <style>
-        /* Reset margins and font for the entire document */
+        /* Reset styling */
         body, html {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif; /* Sets font style */
+            font-family: Arial, sans-serif;
         }
 
-        /* Main container */
+        /* Full-page container */
         .container {
-            background-color: #3367d6; /* Blue background color */
+            background-color: #3367d6; /* Blue background */
             height: 100vh; /* Full viewport height */
-            display: flex; /* Flex layout for centering content */
-            justify-content: center; /* Centers horizontally */
-            align-items: center; /* Centers vertically */
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
         }
 
-        /* Inner container for the transaction menu */
+        /* Transaction menu styling */
         .transaction-menu {
-            background-color: #000; /* Black background */
+            background-color: #000; /* Black background for the menu */
             color: white; /* White text color */
-            padding: 20px; /* Space inside the menu */
-            border-radius: 10px; /* Rounded corners */
-            text-align: center; /* Center text alignment */
-            width: 300px; /* Fixed width for the menu */
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Adds a slight shadow for effect */
+            padding: 40px; /* Padding around the menu */
+            border-radius: 20px; /* Rounded corners */
+            text-align: center; /* Center align text */
+            width: 600px; /* Wider menu */
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5); /* Shadow for depth */
         }
 
-        /* Welcome message style */
+        /* Welcome message */
         .transaction-menu h3 {
-            font-size: 18px; /* Font size for welcome message */
-            margin-bottom: 10px; /* Space below the welcome message */
+            font-size: 36px; /* Larger font for welcome message */
+            margin-bottom: 20px; /* Space below the welcome message */
         }
 
-        /* Heading style */
+        /* Main heading */
         .transaction-menu h2 {
-            font-size: 20px; /* Font size for heading */
-            margin-bottom: 20px; /* Space below the heading */
+            font-size: 32px; /* Larger font for the main heading */
+            margin-bottom: 30px; /* Space below the heading */
         }
 
-        /* Grid layout for the transaction buttons */
+        /* Button grid container */
         .transaction-buttons {
-            display: grid; /* Grid layout */
-            grid-template-columns: 1fr 1fr; /* Two columns of equal width */
-            gap: 10px; /* Space between buttons */
+            display: grid; /* Grid layout for buttons */
+            grid-template-columns: repeat(2, 1fr); /* Two columns */
+            gap: 20px; /* Space between buttons */
         }
 
-        /* Styles for each button */
+        /* Styling for each button */
         .transaction-buttons button {
-            background-color: white; /* White background for buttons */
-            color: black; /* Black text color */
-            border: none; /* Removes default button border */
-            border-radius: 5px; /* Rounded corners */
-            padding: 10px; /* Space inside buttons */
-            font-size: 14px; /* Font size for button text */
+            background-color: #222; /* Dark background for buttons */
+            color: white; /* White text */
+            border: none; /* Remove default border */
+            border-radius: 8px; /* Rounded corners */
+            padding: 20px; /* Add padding inside buttons */
+            font-size: 20px; /* Larger button text */
             cursor: pointer; /* Pointer cursor on hover */
-            text-transform: capitalize; /* Capitalizes first letters */
         }
 
         /* Hover effect for buttons */
         .transaction-buttons button:hover {
-            background-color: #e0e0e0; /* Light gray on hover */
+            background-color: #444; /* Slightly lighter background on hover */
         }
     </style>
 </head>
@@ -101,19 +100,17 @@
         <!-- Transaction menu -->
         <div class="transaction-menu">
             <!-- Welcome message -->
-            <h3>Hello, <%=name%>!</h3> <!-- Personalized welcome message -->
-            
-            <!-- Heading -->
+            <h3>Hello, <%=name%>!</h3>
+            <!-- Main heading -->
             <h2>Please select your transaction</h2>
-
             <!-- Buttons for transactions -->
             <div class="transaction-buttons">
                 <button>Deposit</button>
-                <button>Balance check</button>
+                <button>Balance Check</button>
                 <button>Withdraw</button>
                 <button>Pin Change</button>
-                <button>Fast cash</button>
-                <button>Exit</button>
+                <button>Fast Cash</button>
+                <button>Log Out</button>
             </div>
         </div>
     </div>

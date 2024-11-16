@@ -106,13 +106,21 @@
             <h2>Please select your transaction</h2>
             <!-- Buttons for transactions -->
             <div class="transaction-buttons">
-                <button>Deposit</button>
-                <button>Check Balance</button>
-                <button>Withdraw</button>
-                <button>Pin Change</button>
-                <button>Cash Advance</button>
-                <button>Log Out</button>
+                <button onclick="goToPage('/deposit')">Deposit</button>
+                <button onclick="goToPage('/balance')">Check Balance</button>
+                <button onclick="goToPage('/withdraw')">Withdraw</button>
+                <button onclick="goToPage('/pinchange')">Pin Change</button>
+                <button onclick="goToPage('/transfer')">Transfer</button>
+                <button onclick="logOut()">Log Out</button>
             </div>
+            <script>
+                function goToPage(destination) {
+                    window.location.href = window.location.href = window.location.pathname.replace('/home', destination);
+                }
+                function logOut() {
+                    window.location.href = '/'
+                }
+            </script>
         </div>
     </div>
 </body>

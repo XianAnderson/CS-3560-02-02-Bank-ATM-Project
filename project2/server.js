@@ -8,6 +8,9 @@ app.set('view engine', 'ejs');
 const { dbconnect } = require('./dbConnection.js');
 db = dbconnect()
 
+//Serve static files
+app.use('/images', express.static(__dirname + '/views/images'));
+
 // login page
 app.get('/', (req, res) => {
     console.log('index');

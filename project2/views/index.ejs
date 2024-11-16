@@ -19,155 +19,136 @@
 -->
 
 <head>
-    <meta charset="UTF-8"> <!-- Sets the character encoding for the document -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures the page is responsive on all devices -->
-    <title>Bank Login</title> <!-- Title of the page -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Login</title>
     <style>
-        /* Reset body and html margin and padding */
+        /* General reset */
         body, html {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif; /* Sets font for the entire page */
+            font-family: Arial, sans-serif;
         }
 
-        /* Main container that holds both sections */
+        /* Main container for the entire layout */
         .container {
-            display: flex; /* Flex layout to place sections side by side */
+            display: flex;
             height: 100vh; /* Full viewport height */
             width: 100%; /* Full viewport width */
         }
 
-        /* Styles for the left section (logo area) */
+        /* Left section for the logo */
         .left-section {
-            background-color: #f2f4f8; /* Light background color */
+            background-color: #3367d6; /* Blue background color */
             width: 50%; /* Half the screen width */
-            display: flex; /* Flex layout to center content */
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            flex-direction: column; /* Stack items vertically */
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
         }
 
-        /* Style for the bank image in the left section */
         .left-section img {
-            width: 500px; /* Sets the width of the image */
-            height: auto; /* Maintains aspect ratio */
+            width: 500px; /* Fixed width for the logo */
+            height: auto; /* Maintain aspect ratio */
         }
 
-        /* Styles for the right section (login area) */
+        /* Right section for the form */
         .right-section {
-            width: 50%; /* Half the screen width */
+            width: 50%; /* Other half of the screen */
             background-color: #3367d6; /* Blue background color */
             color: white; /* White text color */
-            padding: 40px; /* Space around the content */
-            position: relative; /* Allows positioning of child elements */
+            padding: 40px; /* Padding for content */
+            position: relative; /* Relative for positioning child elements */
         }
 
-        /* Main heading in the right section */
         .right-section h2 {
-            font-size: 32px; /* Large font size */
-            margin-bottom: 10px; /* Space below the heading */
+            font-size: 32px; /* Heading font size */
+            margin-bottom: 20px; /* Space below the heading */
         }
 
-        /* Form group container for each input field */
         .form-group {
-            margin-bottom: 20px; /* Space below each form group */
+            margin-bottom: 20px; /* Space between input fields */
         }
 
-        /* Styles for labels in the form */
         .form-group label {
-            display: block; /* Makes label take full width */
-            margin-bottom: 5px; /* Space below the label */
+            display: block; /* Label on its own line */
+            margin-bottom: 5px; /* Space below label */
+            font-size: 18px; /* Label font size */
         }
 
-        /* Input fields styling */
-        .form-group input[type="text"], .form-group input[type="password"] {
-            width: 100%; /* Full width input */
-            padding: 10px; /* Space inside the input */
-            font-size: 16px; /* Font size for input text */
-            border: none; /* Removes border */
+        .form-group input {
+            width: 100%; /* Full width input fields */
+            padding: 10px; /* Internal padding */
+            font-size: 16px; /* Input text size */
+            border: none; /* Remove borders */
             border-radius: 4px; /* Rounded corners */
+            background-color: #f2f2f2; /* Light gray background */
+            color: black; /* Black text color */
         }
 
-        /* Container for buttons */
         .button-group {
-            display: flex; /* Flex layout for side-by-side buttons */
+            display: flex; /* Arrange buttons in a row */
             gap: 10px; /* Space between buttons */
         }
 
-        /* Style for each button */
-        .button-group button {
-            width: 100%; /* Each button takes up full width of container */
-            padding: 10px; /* Space inside the button */
-            font-size: 16px; /* Font size for button text */
-            border: none; /* Removes border */
+        .button-group input[type="submit"], .button-group button {
+            width: 100px; /* Button width */
+            padding: 10px; /* Internal padding */
+            font-size: 16px; /* Button text size */
+            border: none; /* Remove borders */
             border-radius: 4px; /* Rounded corners */
-            background-color: #5a86d6; /* Button color */
-            color: white; /* White text color */
-            cursor: pointer; /* Changes cursor to pointer on hover */
+            background-color: #5a86d6; /* Blue button background */
+            color: white; /* White button text */
+            cursor: pointer; /* Pointer cursor on hover */
         }
 
-        /* Hover effect for buttons */
-        .button-group button:hover {
-            background-color: #4669ad; /* Darkens the button color on hover */
+        .button-group input[type="submit"]:hover, .button-group button:hover {
+            background-color: #4669ad; /* Darker blue on hover */
         }
 
-        /* Style for the "Admin Login" link */
-        .admin-link {
-            position: absolute; /* Positions link relative to the container */
-            bottom: 20px; /* Places it 20px from the bottom */
-            left: 40px; /* Places it 40px from the left */
-            color: white; /* White text color */
-            text-decoration: none; /* Removes underline */
-            font-size: 14px; /* Font size for link text */
-        }
-
-        /* Style for the close button ("X" icon) */
         .close-btn {
-            position: absolute; /* Positions "X" relative to the container */
-            top: 20px; /* Places it 20px from the top */
-            right: 20px; /* Places it 20px from the right */
-            font-size: 24px; /* Font size for "X" icon */
+            position: absolute; /* Absolute positioning for the close button */
+            top: 20px; /* Space from the top */
+            right: 20px; /* Space from the right */
+            font-size: 24px; /* Font size for the "X" */
             color: white; /* White color */
-            cursor: pointer; /* Changes cursor to pointer on hover */
+            cursor: pointer; /* Pointer cursor on hover */
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <!-- Left section for the bank logo -->
-    <div class="left-section">
-        <img src="./images/bankImage2.png" alt="Bank Logo"> <!-- Displays the bank image -->
+    <div class="container">
+        <!-- Left Section for the Logo -->
+        <div class="left-section">
+            <img src="./images/bankImage2.png" alt="Bank Logo"> <!-- Bank logo -->
+        </div>
+        
+        <!-- Right Section for the Form -->
+        <div class="right-section">
+            <div class="close-btn">X</div> <!-- Close button -->
+            <h2>Welcome!</h2>
+            <form id="pinForm" action="/" method="post">
+                <div class="form-group">
+                    <label for="CardNum">Card Number</label>
+                    <input type="text" id="CardNum" name="CardNum" placeholder="Enter Card Number">
+                </div>
+                <div class="form-group">
+                    <label for="PIN">PIN</label>
+                    <input type="password" id="PIN" name="PIN" placeholder="Enter PIN Number">
+                </div>
+                <div class="button-group">
+                    <input type="submit" value="SIGN IN"> <!-- Submit button -->
+                    <button type="button" onclick="clearInputs()">CLEAR</button> <!-- Clear button -->
+                </div>
+            </form>
+        </div>
     </div>
-    
-    <!-- Right section for login form -->
-    <div class="right-section">
-        <div class="close-btn">X</div> <!-- Close button at the top right corner -->
 
-        <h2>Welcome!</h2> <!-- Main welcome heading -->
-        
-        <!-- Form group for card number input -->
-        <div class="form-group">
-            <label for="cardNumber">Card Number</label> <!-- Label for card number field -->
-            <input type="text" id="cardNumber" placeholder="Enter Card Number"> <!-- Card number input field -->
-        </div>
-
-        <!-- Form group for PIN number input -->
-        <div class="form-group">
-            <label for="pinNumber">PIN Number</label> <!-- Label for PIN number field -->
-            <input type="password" id="pinNumber" placeholder="Enter PIN Number"> <!-- PIN number input field -->
-        </div>
-        
-        <!-- Button group for Sign In and Clear buttons -->
-        <div class="button-group">
-            <button>SIGN IN</button> <!-- Sign In button -->
-            <button>CLEAR</button> <!-- Clear button -->
-        </div>
-        
-        <!-- Admin Login link at the bottom left of the section -->
-        <a href="#" class="admin-link">Admin Login</a>
-    </div>
-</div>
-
+    <script>
+        // Function to clear input fields
+        function clearInputs() {
+            document.getElementById('CardNum').value = ''; // Clears the Card Number field
+            document.getElementById('PIN').value = ''; // Clears the PIN field
+        }
+    </script>
 </body>
 </html>

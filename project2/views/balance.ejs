@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!--
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,5 +10,89 @@
 <body>
     <p>Your savings balance is <%=savingsBalance%></p>
     <p>Your checking balance is <%=checkingBalance%></p>
+</body>
+</html>
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Balance</title>
+    <style>
+        /* Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Main container */
+        .container {
+            background-color: #3367d6; /* Blue background */
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            color: white; /* White text color */
+        }
+
+        /* Balance display box */
+        .balance-box {
+            background-color: #000; /* Black background for balance display */
+            padding: 40px; /* Padding around the content */
+            border-radius: 20px; /* Rounded corners */
+            text-align: center; /* Center align text */
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
+            width: 500px; /* Match width of home.ejs */
+            height: 400px; /* Match height of home.ejs */
+            position: relative; /* Position relative to hold back button */
+        }
+
+        .balance-box h2 {
+            font-size: 32px; /* Heading font size optimized for larger box */
+            margin-bottom: 20px; /* Space below the heading */
+            text-decoration: underline; /* Underlines the heading */
+        }
+
+        .balance-box p {
+            font-size: 26px; /* Larger font size for balances */
+            margin: 20px 0; /* Space between balances */
+        }
+
+        /* Back button */
+        .back-button {
+            position: absolute; /* Positioned inside the black box */
+            top: 10px; /* Space from the top of the box */
+            left: 10px; /* Space from the left of the box */
+            font-size: 24px; /* Optimized font size for visibility */
+            background-color: transparent; /* Transparent background */
+            color: white; /* White text color */
+            border: none; /* Remove border */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+
+        .back-button:hover {
+            color: #cccccc; /* Lighten color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Balance display box -->
+        <div class="balance-box">
+            <!-- Back button -->
+            <button class="back-button" onclick="goBack('/home')"><</button>
+            <h2>Your Balances</h2>
+            <p>Checking Balance is: $<%= checkingBalance %></p>
+            <p>Saving Balance is: $<%= savingsBalance %></p>
+        </div>
+    </div>
+
+    <script>
+        // Function to navigate back to the home page
+        function goBack(destination) {
+            window.location.href = window.location.href = window.location.pathname.replace('/balance', destination);// Replace with your home page route
+        }
+    </script>
 </body>
 </html>

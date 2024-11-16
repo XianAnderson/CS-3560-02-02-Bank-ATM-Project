@@ -23,95 +23,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATM Login</title>
     <style>
-        /* General reset */
+        /* Reset */
         body, html {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
         }
 
-        /* Main container for the entire layout */
+        /* Main container */
         .container {
-            display: flex;
+            background-color: #3367d6; /* Blue background */
             height: 100vh; /* Full viewport height */
-            width: 100%; /* Full viewport width */
-        }
-
-        /* Left section for the logo */
-        .left-section {
-            background-color: #3367d6; /* Blue background color */
-            width: 50%; /* Half the screen width */
             display: flex;
-            justify-content: center; /* Center content horizontally */
-            align-items: center; /* Center content vertically */
-        }
-
-        .left-section img {
-            width: 500px; /* Fixed width for the logo */
-            height: auto; /* Maintain aspect ratio */
-        }
-
-        /* Right section for the form */
-        .right-section {
-            width: 50%; /* Other half of the screen */
-            background-color: #3367d6; /* Blue background color */
+            justify-content: space-between; /* Space between left and right sections */
+            align-items: center; /* Align items vertically */
             color: white; /* White text color */
-            padding: 40px; /* Padding for content */
-            position: relative; /* Relative for positioning child elements */
+            padding: 0 50px; /* Add space on the sides */
         }
 
-        .right-section h2 {
-            font-size: 32px; /* Heading font size */
+        /* Left section for ATM and logo */
+        .left-section {
+            text-align: center; /* Center align text */
+        }
+
+        .atm-heading {
+            font-size: 48px; /* Large font size for "ATM" */
+            font-weight: bold; /* Bold text */
             margin-bottom: 20px; /* Space below the heading */
         }
 
+        .bank-image {
+            width: 120px; /* Set image width */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 20px; /* Space below the image */
+        }
+
+        /* Right section with vertical black box */
+        .right-section {
+            background-color: #000; /* Black background */
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
+            width: 400px; /* Fixed width */
+            padding: 30px; /* Internal padding */
+            display: flex;
+            flex-direction: column; /* Stack content vertically */
+            text-align: center; /* Center align text */
+        }
+
+        .right-section h2 {
+            font-size: 28px; /* Font size for heading */
+            margin-bottom: 20px; /* Space below heading */
+        }
+
         .form-group {
-            margin-bottom: 20px; /* Space between input fields */
+            margin-bottom: 20px; /* Space between form fields */
         }
 
         .form-group label {
             display: block; /* Label on its own line */
-            margin-bottom: 5px; /* Space below label */
-            font-size: 18px; /* Label font size */
+            font-size: 18px; /* Font size for labels */
+            margin-bottom: 8px; /* Space below label */
         }
 
         .form-group input {
             width: 100%; /* Full width input fields */
             padding: 10px; /* Internal padding */
-            font-size: 16px; /* Input text size */
+            font-size: 16px; /* Input font size */
             border: none; /* Remove borders */
-            border-radius: 4px; /* Rounded corners */
+            border-radius: 8px; /* Rounded corners */
             background-color: #f2f2f2; /* Light gray background */
-            color: black; /* Black text color */
+            color: black; /* Black text */
         }
 
         .button-group {
-            display: flex; /* Arrange buttons in a row */
-            gap: 10px; /* Space between buttons */
+            display: flex; /* Arrange buttons horizontally */
+            justify-content: space-between; /* Space out buttons */
+            margin-top: 20px; /* Space above buttons */
         }
 
-        .button-group input[type="submit"], .button-group button {
-            width: 100px; /* Button width */
-            padding: 10px; /* Internal padding */
-            font-size: 16px; /* Button text size */
-            border: none; /* Remove borders */
-            border-radius: 4px; /* Rounded corners */
+        .button-group button {
             background-color: #5a86d6; /* Blue button background */
-            color: white; /* White button text */
+            color: white; /* White text */
+            font-size: 16px; /* Button font size */
+            padding: 10px 20px; /* Button padding */
+            border: none; /* Remove borders */
+            border-radius: 8px; /* Rounded corners */
             cursor: pointer; /* Pointer cursor on hover */
+            width: 48%; /* Make buttons equal width */
         }
 
-        .button-group input[type="submit"]:hover, .button-group button:hover {
+        .button-group button:hover {
             background-color: #4669ad; /* Darker blue on hover */
-        }
-
-        .close-btn {
-            position: absolute; /* Absolute positioning for the close button */
-            top: 20px; /* Space from the top */
-            right: 20px; /* Space from the right */
-            font-size: 24px; /* Font size for the "X" */
-            color: white; /* White color */
-            cursor: pointer; /* Pointer cursor on hover */
         }
     </style>
 </head>
@@ -119,12 +121,13 @@
     <div class="container">
         <!-- Left Section for the Logo -->
         <div class="left-section">
+            <div class="atm-heading">ATM</div>
             <img src="./images/bankImage2.png" alt="Bank Logo"> <!-- Bank logo -->
         </div>
         
         <!-- Right Section for the Form -->
         <div class="right-section">
-            <div class="close-btn">X</div> <!-- Close button -->
+            <!--<div class="close-btn">X</div>--> <!-- Close button -->
             <h2>Welcome!</h2>
             <form id="pinForm" action="/" method="post">
                 <div class="form-group">

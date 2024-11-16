@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!--
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,5 +24,96 @@
             window.location.href = '/'
         }
     </script>
+</body>
+</html>
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Selection</title>
+    <style>
+        /* Reset styling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Full-page container */
+        .container {
+            background-color: #3367d6; /* Blue background */
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+
+        /* Transaction menu styling */
+        .transaction-menu {
+            background-color: #000; /* Black background for the menu */
+            color: white; /* White text color */
+            padding: 40px; /* Padding around the menu */
+            border-radius: 20px; /* Rounded corners */
+            text-align: center; /* Center align text */
+            width: 600px; /* Wider menu */
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+        }
+
+        /* Welcome message */
+        .transaction-menu h3 {
+            font-size: 36px; /* Larger font for welcome message */
+            margin-bottom: 20px; /* Space below the welcome message */
+        }
+
+        /* Main heading */
+        .transaction-menu h2 {
+            font-size: 32px; /* Larger font for the main heading */
+            margin-bottom: 30px; /* Space below the heading */
+        }
+
+        /* Button grid container */
+        .transaction-buttons {
+            display: grid; /* Grid layout for buttons */
+            grid-template-columns: repeat(2, 1fr); /* Two columns */
+            gap: 20px; /* Space between buttons */
+        }
+
+        /* Styling for each button */
+        .transaction-buttons button {
+            background-color: #222; /* Dark background for buttons */
+            color: white; /* White text */
+            border: none; /* Remove default border */
+            border-radius: 8px; /* Rounded corners */
+            padding: 20px; /* Add padding inside buttons */
+            font-size: 20px; /* Larger button text */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+
+        /* Hover effect for buttons */
+        .transaction-buttons button:hover {
+            background-color: #444; /* Slightly lighter background on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Transaction menu -->
+        <div class="transaction-menu">
+            <!-- Welcome message -->
+            <h3>Hello, <%=name%>!</h3>
+            <!-- Main heading -->
+            <h2>Please select your transaction</h2>
+            <!-- Buttons for transactions -->
+            <div class="transaction-buttons">
+                <button>Deposit</button>
+                <button>Check Balance</button>
+                <button>Withdraw</button>
+                <button>Pin Change</button>
+                <button>Cash Advance</button>
+                <button>Log Out</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -3,10 +3,12 @@ const bodyParser = require('body-parser');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
 const { dbconnect } = require('./dbConnection.js');
-db = dbconnect()
+db = dbconnect();
 
 //Serve static files
 app.use('/images', express.static(__dirname + '/views/images'));
@@ -58,7 +60,10 @@ app.get('/:accountId/home/', (req, res) => {
 });
 
 // we should split each sub system into a router
-const userRouter = require('./routes/balance');
-app.use('/:accountId/balance',userRouter);
+const balanceRouter = require('./routes/balance');
+app.use('/:accountId/balance',balanceRouter);
+
+const transferRouter = require('./routes/transfer');
+app.use('/:accountId/transfer',transferRouter);
 
 app.listen(3000);

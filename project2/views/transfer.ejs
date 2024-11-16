@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Transfer</title>
+</head>
+<body>
+    <p>Your savings balance is <%=savingsBalance%></p>
+    <p>Your checking balance is <%=checkingBalance%></p>
+    <form id="numForm" method="post">
+
+        <input type="radio" id="stoc" name="direction" value="stoc">
+        <label for="stoc">Savings -> Checking</label><br>
+        
+        <input type="radio" id="ctos" name="direction" value="ctos">
+        <label for="ctos">Checking -> Savings</label><br>
+
+        <input type="number" id="amount" name="amount" placeholder="0.00" min="0" step="0.01">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

@@ -5,5 +5,7 @@ then go to localhost:3000 in a browser
 
 for a test login, use the following sql:
 use db_name;
-insert into useraccount (accountId, name, balance) VALUES ('123','James',100.10);
-insert into usercard (accountId, cardId, PIN) VALUES ('123','456','dog');
+insert into Card Number for testing: 1234567812345678
+insert into Pin for testing: 4321
+
+That is Jane Doe's account (accountID 1)

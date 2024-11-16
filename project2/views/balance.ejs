@@ -31,9 +31,24 @@
             background-color: #3367d6; /* Blue background */
             height: 100vh; /* Full viewport height */
             display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
+            flex-direction: column; /* Stack content vertically */
+            justify-content: center; /* Center vertically */
+            align-items: center; /* Center horizontally */
             color: white; /* White text color */
+        }
+
+        /* ATM heading */
+        .atm-heading {
+            font-size: 48px; /* Large font size for "ATM" */
+            font-weight: bold; /* Bold text */
+            margin-bottom: 20px; /* Space below the heading */
+        }
+
+        /* Bank image styling */
+        .bank-image {
+            width: 120px; /* Set image width */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 20px; /* Space below the image */
         }
 
         /* Balance display box */
@@ -78,13 +93,19 @@
 </head>
 <body>
     <div class="container">
+        <!-- ATM heading -->
+        <div class="atm-heading">ATM</div>
+
+        <!-- Bank image -->
+        <img src="/images/bankImage2.png" alt="Bank Icon" class="bank-image">
+
         <!-- Balance display box -->
         <div class="balance-box">
             <!-- Back button -->
             <button class="back-button" onclick="goBack('/home')"><</button>
             <h2>Your Balances</h2>
-            <p>Checking Balance is: $<%= checkingBalance %></p>
-            <p>Saving Balance is: $<%= savingsBalance %></p>
+            <p>Checking Balance: $<%= checkingBalance %></p>
+            <p>Savings Balance: $<%= savingsBalance %></p>
         </div>
     </div>
 

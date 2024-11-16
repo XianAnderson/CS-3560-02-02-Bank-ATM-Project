@@ -31,22 +31,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transaction Selection</title>
+    <title>ATM Home</title>
     <style>
-        /* Reset styling */
+        /* Reset */
         body, html {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
         }
 
-        /* Full-page container */
+        /* Main container */
         .container {
             background-color: #3367d6; /* Blue background */
             height: 100vh; /* Full viewport height */
             display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
+            flex-direction: column; /* Stack content vertically */
+            justify-content: center; /* Center vertically */
+            align-items: center; /* Center horizontally */
+            color: white; /* White text color */
+        }
+
+        /* ATM heading */
+        .atm-heading {
+            font-size: 48px; /* Large font size for "ATM" */
+            font-weight: bold; /* Bold text */
+            margin-bottom: 20px; /* Space below the heading */
+        }
+
+        /* Bank image styling */
+        .bank-image {
+            width: 120px; /* Set image width */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 20px; /* Space below the image */
         }
 
         /* Transaction menu styling */
@@ -56,19 +72,17 @@
             padding: 40px; /* Padding around the menu */
             border-radius: 20px; /* Rounded corners */
             text-align: center; /* Center align text */
-            width: 600px; /* Wider menu */
+            width: 500px; /* Fixed width for the menu */
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5); /* Shadow for depth */
         }
 
-        /* Welcome message */
         .transaction-menu h3 {
-            font-size: 36px; /* Larger font for welcome message */
+            font-size: 36px; /* Large font for welcome message */
             margin-bottom: 20px; /* Space below the welcome message */
         }
 
-        /* Main heading */
         .transaction-menu h2 {
-            font-size: 32px; /* Larger font for the main heading */
+            font-size: 32px; /* Main heading font size */
             margin-bottom: 30px; /* Space below the heading */
         }
 
@@ -98,6 +112,11 @@
 </head>
 <body>
     <div class="container">
+        <!-- ATM heading -->
+        <div class="atm-heading">ATM</div>
+
+        <!-- Bank image -->
+        <img src="/images/bankImage2.png" alt="Bank Icon" class="bank-image">
         <!-- Transaction menu -->
         <div class="transaction-menu">
             <!-- Welcome message -->

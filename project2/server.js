@@ -1,17 +1,12 @@
 const express = require('express');
-const mysql2 = require('mysql2');
 const bodyParser = require('body-parser');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
 
-const db = mysql2.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "password",
-    database: "db_name", // not sure if we should change the db name or just use this as the name
-});
+const { dbconnect } = require('./dbConnection.js');
+db = dbconnect()
 
 // login page
 app.get('/', (req, res) => {
@@ -21,22 +16,22 @@ app.get('/', (req, res) => {
 
 // check if login is valid
 app.post('/', (req, res) => {
-    let CardID = req.body.CardID;
+    let CardNum = req.body.CardNum;
     let PIN = req.body.PIN;
-    console.log('trying login with',CardID,PIN)
+    console.log('trying login with',CardNum,PIN)
 
     // HERE ARE INSTRUCTIONS ON HOW TO USE SQL QUERY!!!
     // below is the sql query
     // use ? in sql and then put the real variable in []
     // everthing relating to the output of the query should be in the {}
-    const sql = 'select accountId, PIN from usercard where cardID = ?';
-    db.query(sql, [CardID], (err, results) => {
+    const sql = 'select accountId, pin from usercard where cardNumber = ?';
+    db.query(sql, [CardNum], (err, results) => {
         if (err) {
             console.error('error', err);
         }
         
         if (results.length > 0) {
-            if(results[0].PIN == PIN) {
+            if(results[0].pin == PIN) {
                 console.log('success logging in');
                 res.render('loginRedirect',{accountId : results[0].accountId});
             } else {
@@ -44,7 +39,7 @@ app.post('/', (req, res) => {
                 res.render('index');
             }
         } else {
-            console.log('no card found with cardID');
+            console.log('no card found with CardNum');
             res.render('index');
         }
     });

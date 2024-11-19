@@ -1,1 +1,0 @@
-For project formatting purposes, this folder will hold all javascript files.

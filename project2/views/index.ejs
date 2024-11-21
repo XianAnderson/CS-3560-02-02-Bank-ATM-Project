@@ -30,15 +30,17 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Main container */
+        /* Main container with background image */
         .container {
-            background-color: #3367d6; /* Blue background */
+            background-image: url('/images/beachBackground.jpg'); /* Path to background image */
+            background-size: cover; /* Cover the entire page */
+            background-position: center; /* Center the image */
             height: 100vh; /* Full viewport height */
             display: flex;
-            justify-content: space-between; /* Space between left and right sections */
-            align-items: center; /* Align items vertically */
+            justify-content: space-between; /* Align sections horizontally */
+            align-items: center; /* Center content vertically */
             color: white; /* White text color */
-            padding: 0 50px; /* Add space on the sides */
+            padding: 0 50px; /* Space on sides */
         }
 
         /* Left section for ATM and logo */
@@ -53,24 +55,22 @@
         }
 
         .bank-image {
-            width: 120px; /* Set image width */
+            width: 650px; /* Set image width */
             height: auto; /* Maintain aspect ratio */
             margin-bottom: 20px; /* Space below the image */
         }
 
-        /* Right section with vertical black box */
-        .right-section {
-            background-color: #000; /* Black background */
+        /* Black box styling */
+        .login-box {
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
             border-radius: 20px; /* Rounded corners */
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
             width: 400px; /* Fixed width */
             padding: 30px; /* Internal padding */
-            display: flex;
-            flex-direction: column; /* Stack content vertically */
             text-align: center; /* Center align text */
         }
 
-        .right-section h2 {
+        .login-box h2 {
             font-size: 28px; /* Font size for heading */
             margin-bottom: 20px; /* Space below heading */
         }
@@ -115,42 +115,74 @@
         .button-group button:hover {
             background-color: #4669ad; /* Darker blue on hover */
         }
+
+        /* Admin Login Button */
+        .admin-login {
+            position: absolute; /* Position it at the bottom of the page */
+            bottom: 20px; /* Space from the bottom */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust to center */
+            background-color: #5a86d6; /* Blue button background */
+            color: white; /* White text */
+            font-size: 16px; /* Button font size */
+            padding: 10px 20px; /* Button padding */
+            border: none; /* Remove borders */
+            border-radius: 8px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+
+        .admin-login:hover {
+            background-color: #4669ad; /* Darker blue on hover */
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Left Section for the Logo -->
+        <!-- Left Section -->
         <div class="left-section">
             <div class="atm-heading">ATM</div>
-            <img src="./images/bankImage2.png" alt="Bank Logo"> <!-- Bank logo -->
+            <img src="/images/bankImage2.png" alt="Bank Icon" class="bank-image">
         </div>
-        
-        <!-- Right Section for the Form -->
+
+        <!-- Right Section -->
         <div class="right-section">
-            <!--<div class="close-btn">X</div>--> <!-- Close button -->
-            <h2>Welcome!</h2>
-            <form id="pinForm" action="/" method="post">
-                <div class="form-group">
-                    <label for="CardNum">Card Number</label>
-                    <input type="text" id="CardNum" name="CardNum" placeholder="Enter Card Number">
-                </div>
-                <div class="form-group">
-                    <label for="PIN">PIN</label>
-                    <input type="password" id="PIN" name="PIN" placeholder="Enter PIN Number">
-                </div>
-                <div class="button-group">
-                    <input type="submit" value="SIGN IN"> <!-- Submit button -->
-                    <button type="button" onclick="clearInputs()">CLEAR</button> <!-- Clear button -->
-                </div>
-            </form>
+            <!-- Black box -->
+            <div class="login-box">
+                <h2>Welcome!</h2>
+                <form action="/" method="post">
+                    <!-- Card Number Field -->
+                    <div class="form-group">
+                        <label for="CardNum">Card Number</label>
+                        <input type="text" id="CardNum" name="CardNum" placeholder="Enter your Card Number">
+                    </div>
+                    <!-- PIN Field -->
+                    <div class="form-group">
+                        <label for="PIN">PIN</label>
+                        <input type="password" id="PIN" name="PIN" placeholder="Enter your PIN">
+                    </div>
+                    <!-- Button Group -->
+                    <div class="button-group">
+                        <button type="submit">SIGN IN</button>
+                        <button type="button" onclick="clearFields()">CLEAR</button>
+                    </div>
+                </form>
+            </div>
         </div>
+
+        <!-- Admin Login Button -->
+        <button class="admin-login" onclick="adminLogin()">Admin Login</button>
     </div>
 
     <script>
         // Function to clear input fields
-        function clearInputs() {
-            document.getElementById('CardNum').value = ''; // Clears the Card Number field
-            document.getElementById('PIN').value = ''; // Clears the PIN field
+        function clearFields() {
+            document.getElementById('CardNum').value = ''; // Clear Card Number
+            document.getElementById('PIN').value = ''; // Clear PIN
+        }
+
+        // Function to redirect to admin login
+        function adminLogin() {
+            window.location.href = "/adminLogin"; // Redirect to adminLogin.ejs
         }
     </script>
 </body>

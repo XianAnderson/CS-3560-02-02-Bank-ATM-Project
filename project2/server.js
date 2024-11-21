@@ -11,7 +11,7 @@ const { dbconnect } = require('./dbConnection.js');
 db = dbconnect();
 
 //Serve static files
-app.use('/images', express.static(__dirname + '/views/images'));
+app.use('/images', express.static(path.join(__dirname + '/views/images')));
 
 // login page
 app.get('/', (req, res) => {
@@ -46,6 +46,10 @@ app.post('/', (req, res) => {
         }
     });
 });
+
+// Import routes
+const adminLoginRouter = require('./routes/adminLogin'); // Admin login route
+app.use('/admin', adminLoginRouter); // Mount admin routes on /admin
 
 // select what to do page
 app.get('/:accountId/home/', (req, res) => {

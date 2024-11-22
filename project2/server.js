@@ -26,7 +26,7 @@ app.post('/', (req, res) => {
     console.log('trying login with',CardNum,PIN)
 
     // Make sure login is correct
-    const sql = 'select accountId, pin from usercard where cardNumber = ?';
+    const sql = 'select accountId, pin, cardID from usercard where cardNumber = ?';
     db.query(sql, [CardNum], (err, results) => {
         if (err) {
             console.error('error', err);
@@ -35,7 +35,7 @@ app.post('/', (req, res) => {
         if (results.length > 0) {
             if(results[0].pin == PIN) {
                 console.log('success logging in');
-                res.render('loginRedirect',{accountId : results[0].accountId});
+                res.render('loginRedirect',{accountId : results[0].accountId, cardID : results[0].cardID});
             } else {
                 console.log('wrong PIN');
                 res.render('index');
@@ -52,7 +52,7 @@ const adminLoginRouter = require('./routes/adminLogin'); // Admin login route
 app.use('/admin', adminLoginRouter); // Mount admin routes on /admin
 
 // select what to do page
-app.get('/:accountId/home/', (req, res) => {
+app.get('/:accountId/:cardID/home/', (req, res) => {
     const sql = 'select name from useraccount where accountId = ?';
     db.query(sql, [req.params.accountId], (err, results) => {
         console.log('home for', req.params.accountId);
@@ -62,9 +62,9 @@ app.get('/:accountId/home/', (req, res) => {
 
 // split each sub system into a router
 const balanceRouter = require('./routes/balance');
-app.use('/:accountId/balance',balanceRouter);
+app.use('/:accountId/:cardID/balance',balanceRouter);
 
 const transferRouter = require('./routes/transfer');
-app.use('/:accountId/transfer',transferRouter);
+app.use('/:accountId/:cardID/transfer',transferRouter);
 
 app.listen(3000);

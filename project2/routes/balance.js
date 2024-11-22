@@ -3,7 +3,7 @@ const mysql2 = require('mysql2');
 const router = express.Router({ mergeParams: true });
 
 const { dbconnect } = require('../dbConnection.js');
-db = dbconnect()
+db = dbconnect();
 
 router.get('/', (req, res) => {
     const sql = 'select checkingBalance, savingsBalance from useraccount where accountId = ?';

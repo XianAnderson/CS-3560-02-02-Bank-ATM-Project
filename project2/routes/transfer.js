@@ -60,8 +60,8 @@ router.post('/', (req, res) => {
         // do transfer in database
         const sql = 'update useraccount set checkingBalance = ?, savingsBalance = ? where accountId = ?';
         db.query(sql, [newChecking, newSaving, req.params.accountId], (err, results) => {
-            const sql = 'insert into transactions (transactionType, amount, sourceAccount, destinationAccount, status, accountID, cardID, atmID) values ("transfer", ?, ?, ?, "completed", ?, 1, 1)';
-            db.query(sql, [amount, scource, destination, req.params.accountId], (err, results) => {
+            const sql = 'insert into transactions (transactionType, amount, sourceAccount, destinationAccount, status, accountID, cardID, atmID) values ("transfer", ?, ?, ?, "completed", ?, ?, 1)';
+            db.query(sql, [amount, scource, destination, req.params.accountId, req.params.cardID], (err, results) => {
                 console.log('transfer update')
                 //console.log(results)
                 res.render('transfer', {checkingBalance : newChecking, savingsBalance : newSaving});

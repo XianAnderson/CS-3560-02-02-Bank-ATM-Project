@@ -38,7 +38,22 @@ router.post('/login', (req, res) => {
 
 // Route to render Admin Home Page
 router.get('/:workerID/home', (req, res) => {
-  res.render('adminHome', { workerID: req.params.workerID }); // Pass worker ID to the page for personalized content
+  const sql = 'SELECT workerName FROM admin WHERE workerID = ?';
+  db.query(sql, [req.params.workerID], (err, results) => {
+      if (err) {
+          console.error('Database error:', err);
+          return res.status(500).send('Internal Server Error');
+      }
+      if (results.length === 0) {
+          console.error('No worker found with workerID:', req.params.workerID);
+          return res.status(404).send('Worker not found');
+      }
+      res.render('adminHome', {
+        workerName: results[0].workerName,
+        workerID: req.params.workerID // Pass workerID explicitly
+    });
+  });
 });
+
 
 module.exports = router; // Export the router for use in server.js

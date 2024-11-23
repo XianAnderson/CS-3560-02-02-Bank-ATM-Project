@@ -1,30 +1,20 @@
-step 1: input the following command in your SQL query...
+input the following command in your SQL query...
 
 ALTER TABLE useraccount
 DROP COLUMN accountType;
 
-step 2: 
-
 ALTER TABLE useraccount
 DROP FOREIGN KEY fk_cardID; 
 
-step 3:
-
 ALTER TABLE useraccount
 DROP COLUMN cardID; (edited)
-[11:56 PM]
-step 4: 
 
 ALTER TABLE useraccount
 ADD COLUMN cardID JSON;
 
-step 5:
-
 UPDATE useraccount
 SET cardID = JSON_ARRAY(1)
 WHERE accountID = 1;
-[11:57 PM]
-Step 6: 
 
 CREATE TABLE admin (
     workerID INT AUTO_INCREMENT PRIMARY KEY, -- Auto-incrementing primary key for unique worker IDs
@@ -34,7 +24,13 @@ CREATE TABLE admin (
     jobsDone JSON                             -- JSON array to store all PK numbers from atmmaintenance
 );
 
-Step 7: 
-
 INSERT INTO admin (workerName, workerUsername, workerPassword, jobsDone)
 VALUES ('John Doe', 'johndoe', 'password', '[1, 2, 3]');
+
+alter table atm drop totalAmount;
+alter table atm CHANGE COLUMN 100s num100 int;
+alter table atm CHANGE COLUMN 50s num50 int;
+alter table atm CHANGE COLUMN 20s num20 int;
+alter table atm CHANGE COLUMN 10s num10 int;
+alter table atm CHANGE COLUMN 5s num5 int;
+alter table atm CHANGE COLUMN 1s num1 int;

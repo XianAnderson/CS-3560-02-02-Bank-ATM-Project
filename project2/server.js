@@ -67,4 +67,7 @@ app.use('/:accountId/:cardID/balance',balanceRouter);
 const transferRouter = require('./routes/transfer');
 app.use('/:accountId/:cardID/transfer',transferRouter);
 
+const pinChangeRouter = require('./routes/pinChange'); 
+app.use('/:accountId/:cardID/pinChange', pinChangeRouter);
+
 app.listen(3000);

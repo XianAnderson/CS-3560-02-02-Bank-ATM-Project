@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change PIN</title>
+    <style>
+        /* Apply the same styles as "home.ejs" */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            background-image: url('/images/beachBackground.jpg'); /* Adjust image path */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content-box {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
+            width: 400px;
+            color: white;
+            text-align: center;
+        }
+
+        .content-box h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button-group button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            background-color: #5a86d6; /* Blue button background */
+        }
+
+        .button-group button:hover {
+            background-color: #4669ad; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content-box">
+            <h1>Change Your PIN</h1>
+          
+            <!-- Error message -->
+            <% if (error) { %>
+              <p style="color: red;"><%= error %></p>
+            <% } %>
+          
+            <!-- Success message -->
+            <% if (success) { %>
+              <p style="color: green;"><%= success %></p>
+            <% } %>
+          
+            <form action="/" method="POST">
+              <div>
+                <label for="currentPin">Current PIN:</label>
+                <input type="password" name="currentPin" id="currentPin" required />
+              </div>
+          
+              <div>
+                <label for="newPin">New PIN:</label>
+                <input type="password" name="newPin" id="newPin" required />
+              </div>
+          
+              <div>
+                <label for="confirmPin">Confirm New PIN:</label>
+                <input type="password" name="confirmPin" id="confirmPin" required />
+              </div>
+                <div class="button-group">
+                    <button type="submit">Submit</button>
+                    <button type="button" onclick="cancelButton('/home')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle cancel button
+        function cancelButton(destination) {
+            window.location.href = window.location.href = window.location.pathname.replace('/pinChange', destination); // Redirect to home page
+        }
+    </script>
+</body>
+</html>

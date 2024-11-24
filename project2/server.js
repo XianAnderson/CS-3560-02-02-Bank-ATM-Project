@@ -63,4 +63,7 @@ app.use('/:accountId/balance',balanceRouter);
 const transferRouter = require('./routes/transfer');
 app.use('/:accountId/transfer',transferRouter);
 
+const withdrawRouter = require('./routes/withdraw');
+app.use('/:accountId/withdraw',withdrawRouter);
+
 app.listen(3000);

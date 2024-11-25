@@ -3,7 +3,6 @@ const mysql2 = require('mysql2');
 const router = express.Router({ mergeParams: true });
 
 const { dbconnect } = require('../dbConnection.js');
-const { checkout } = require('./adminLogin.js');
 db = dbconnect();
 
 

@@ -8,8 +8,7 @@
     <title>ATM Withdraw</title>
 </head>
 <body>
-    <p>Your savings balance is <%=savingsBalance%></p>
-    <p>Your checking balance is <%=checkingBalance%></p>
+   
     <form id="numForm" method="post">
 
         <input type="radio" id="save" name="account" value="save">
@@ -142,7 +141,7 @@
         <div class="withdraw-box">
             <h2>Deposit Funds</h2>
             <form id="numForm" method="post">
-                <!-- Account to withdraw from -->
+                <!-- Account to deposit to -->
                 <div class="form-group">
                     <input type="radio" id="check" name="account" value="check">
                     <label for="check">Checking</label>
@@ -152,9 +151,6 @@
                     <label for="save">Savings</label>
                 </div>
                 <!-- Withdraw amount -->
-                <div class="form-group">
-                    <input type="number" id="amount" name="amount" placeholder="Enter amount (e.g., 12)" min="0" step="1">
-                </div>
 
                 <div class="form-group">
                     Enter amount of 100s
@@ -195,7 +191,7 @@
     <script>
         // Function to handle cancel button
         function cancelDeposit(destination) {
-            window.location.href = window.location.href = window.location.pathname.replace('/withdraw', destination); // Redirect to home page
+            window.location.href = window.location.href = window.location.pathname.replace('/deposit', destination); // Redirect to home page
         }
     </script>
 </body>

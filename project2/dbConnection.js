@@ -4,7 +4,7 @@ const dbconnect = () => {
     const db = mysql2.createConnection({
         host: "localhost",
         user: "root",
-        password: "password",
+        password: "0207LikeAShark2002!",
         database: "useraccounts",
     });
     return db

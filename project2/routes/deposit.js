@@ -11,15 +11,14 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     //bills being deposited
-    var hundreds = req.body.bills100;
-    var fifties = req.body.bills50;
-    var twenties = req.body.bills20;
-    var tens = req.body.bills10;
-    var fives = req.body.bills5;
-    var ones = req.body.bills1;
+    var hundreds = parseInt(req.body.bills100);
+    var fifties = parseInt(req.body.bills50);
+    var twenties = parseInt(req.body.bills20);
+    var tens = parseInt(req.body.bills10);
+    var fives = parseInt(req.body.bills5);
+    var ones = parseInt(req.body.bills1);
     var amount = hundreds * 100 + fifties * 50 + twenties * 20 + tens * 10 + fives * 5 + ones;
 
-    console.log(amount);
     //selection of account similar to withdrawal
     let account = req.body.account
     atmID = 1;
@@ -38,7 +37,6 @@ router.post('/', (req, res) => {
             db.query(sql, [req.params.accountId], (err, results) => {
 
                 newBalance = (Math.round(results[0].savingsBalance * 100) + amount * 100) / 100;
-                console.log(newBalance);
 
                 const sql = 'update useraccount set savingsBalance = ? where accountId = ?';
                 db.query(sql, [newBalance, req.params.accountId], (err, results) => {

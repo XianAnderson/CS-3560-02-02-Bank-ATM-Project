@@ -29,7 +29,6 @@
 
         .admin-heading {
             font-size: 48px; /* Larger font size for the Admin heading */
-            font-weight: bold; /* Bold text */
             margin-bottom: 20px; /* Space below the heading */
         }
 
@@ -45,7 +44,8 @@
             color: white;
             border-radius: 20px; /* Rounded corners */
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
-            width: 500px; /* Fixed width */
+            width: 90%; /* Adjust width to fit content */
+            max-width: 1000px; /* Maximum width */
             padding: 40px; /* Padding inside the box */
             text-align: center; /* Center align text */
         }
@@ -57,10 +57,15 @@
         }
 
         /* Styling for the transaction table */
+        .transaction-table-container {
+            max-height: 400px; /* Fixed height for the table container */
+            overflow-y: auto; /* Enable vertical scrolling */
+            margin: 20px 0; /* Space above and below the table */
+        }
+
         .transaction-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
         }
 
         .transaction-table th, .transaction-table td {
@@ -97,26 +102,34 @@
         <!-- Black box containing ATM transaction history content -->
         <div class="admin-box">
             <h2>ATM Transaction History</h2>
-            <table class="transaction-table">
-                <thead>
-                    <tr>
-                        <th>Transaction ID</th>
-                        <th>Type</th>
-                        <th>Amount</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% transactions.forEach(transaction => { %>
+            <div class="transaction-table-container">
+                <table class="transaction-table">
+                    <thead>
                         <tr>
-                            <td><%= transaction.transactionID %></td>
-                            <td><%= transaction.transactionType %></td>
-                            <td><%= transaction.amount %></td>
-                            <td><%= transaction.transactionDate %></td>
+                            <th>Transaction ID</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Source Account</th>
+                            <th>Destination Account</th>
+                            <th>Status</th>
+                            <th>Date</th>
                         </tr>
-                    <% }) %>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <% transactions.forEach(transaction => { %>
+                            <tr>
+                                <td><%= transaction.transactionID %></td>
+                                <td><%= transaction.transactionType %></td>
+                                <td><%= transaction.amount %></td>
+                                <td><%= transaction.sourceAccount %></td>
+                                <td><%= transaction.destinationAccount %></td>
+                                <td><%= transaction.status %></td>
+                                <td><%= transaction.transactionDate %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
             <button class="back-button" onclick="goBack('/admin/<%= workerID %>/home')">Back To Home</button>
         </div>
     </div>

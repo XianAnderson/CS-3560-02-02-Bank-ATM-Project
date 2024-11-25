@@ -6,6 +6,7 @@ const { dbconnect } = require('../dbConnection.js');
 const { checkout } = require('./adminLogin.js');
 db = dbconnect();
 
+
 // show withdraw options
 router.get('/', (req, res) => {
     const sql = 'select checkingBalance, savingsBalance from useraccount where accountId = ?';
@@ -15,10 +16,12 @@ router.get('/', (req, res) => {
     });
 });
 
-overdraft = false;
+var overdraft = false;
+var account;
+
 
 router.post('/', (req, res) => {
-    let account = req.body.account;
+    account = req.body.account;
     let amount = parseInt(req.body.amount);
     let with100 = parseInt(req.body.amount100);
     let with50 = parseInt(req.body.amount50);
@@ -29,9 +32,8 @@ router.post('/', (req, res) => {
 
     
     const atmID = 1;
-    overdraft = false;
 
-
+    var overdraft = false;
 
 
     if (account == "check") {
@@ -264,9 +266,9 @@ router.post('/', (req, res) => {
             //setting vars to int to avoid broken decimal math in javascript
             checkBalance = Math.round(results[0].checkingBalance * 100);
             saveBalance = Math.round(results[0].savingsBalance * 100);
-            totalBal = checkBalance + saveBalance;
+            var totalBal = checkBalance + saveBalance;
 
-            if (amount * 100 - totalBal < 0) {
+            if (totalBal - amount * 100< 0) {
                 //insufficient funds in person account, so go to withdraw screen again
                 res.render('withdraw', { checkingBalance: results[0].checkingBalance, savingsBalance: results[0].savingsBalance });
             }
@@ -341,17 +343,17 @@ router.post('/', (req, res) => {
 
 
                             //take away amount, and bring balance back to float
-                            if (account == save) {
-                                totalBal -= (amount * 100 + saveBalance);
+                            if (account == 'save') {
+                                totalBal = amount *100 - saveBalance;
                                 saveBalance = 0;
-                                checkBalance = totalBal;
+                                checkBalance = (checkBalance - totalBal) / 100;
                                 source = 'savings';
                                 dest = 'checkings';
                             }
                             else {
-                                totalBal -= (amount * 100 + checkBalance);
+                                totalBal = amount * 100 - checkBalance;
                                 checkBalance = 0;
-                                saveBalance = totalBal;
+                                saveBalance = (saveBalance - totalBal) / 100;
                                 source = 'checkings';
                                 dest = 'savings';
                             }
@@ -364,6 +366,7 @@ router.post('/', (req, res) => {
                                     const sql = "INSERT INTO transactions (transactionType, amount, sourceAccount, destinationAccount, status, accountID, cardID, atmID) VALUES (?, ?, ?, ?, ?, 1, ?)";
                                     db.query(sql, ['withdrawal', amount, source, dest, 'completed', req.params.accountId, atmID], (err, results) => {
                                         console.log("withdraw update");
+                                        res.redirect('home');
                                     });
                                 });
                             });

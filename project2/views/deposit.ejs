@@ -73,7 +73,7 @@
             text-align: center; /* Center align text */
         }
 
-        .transfer-box h2 {
+        .withdraw-box h2 {
             font-size: 28px; /* Font size for heading */
             margin-bottom: 20px; /* Space below heading */
             text-decoration: underline; /* Underline heading */
@@ -138,36 +138,55 @@
 
         <!-- Bank image -->
         <img src="/images/bankImage2.png" alt="Bank Icon" class="bank-image">
-        <select multiple size="3">
-            <option>Option 1</option>
-            <option>Option 2</option>
-            <option>Option 3</option>
-        </select>
         <!-- Black box -->
         <div class="withdraw-box">
-            <h2>Withdraw Funds</h2>
-            <div class="balance-info">
-                <p>Checking Balance: $<%= checkingBalance %></p>
-                <p>Savings Balance: $<%= savingsBalance %></p>
-            </div>
+            <h2>Deposit Funds</h2>
             <form id="numForm" method="post">
                 <!-- Account to withdraw from -->
-                <div class="form-group">
-                    <input type="radio" id="save" name="account" value="save">
-                    <label for="save">Savings</label>
-                </div>
                 <div class="form-group">
                     <input type="radio" id="check" name="account" value="check">
                     <label for="check">Checking</label>
                 </div>
-                <!-- Transfer amount -->
                 <div class="form-group">
-                    <input type="number" id="amount" name="amount" placeholder="Enter amount (e.g., 0.00)" min="0" step="0.01">
+                    <input type="radio" id="save" name="account" value="save">
+                    <label for="save">Savings</label>
+                </div>
+                <!-- Withdraw amount -->
+                <div class="form-group">
+                    <input type="number" id="amount" name="amount" placeholder="Enter amount (e.g., 12)" min="0" step="1">
+                </div>
+
+                <div class="form-group">
+                    Enter amount of 100s
+                    <input type="number" id="amount100" name="amount100" placeholder="Enter amount 100s" min="0" step="1" value="0">
+                </div>
+                <div class="form-group">
+                    Enter amount of 50s
+                    <input type="number" id="amount50" name="amount50" placeholder="Enter amount 50s" min="0" step="1" value="0"">
+                </div>
+                <div class="form-group">
+                    Enter amount of 20s
+                    <input type="number" id="amount20" name="amount20" placeholder="Enter amount 20s" min="0" step="1" value="0"">
+                </div>
+                <div class="form-group">
+                    Enter amount of 10s
+                    <input type="number" id="amount10" name="amount10" placeholder="Enter amount 10s" min="0" step="1" value="0"">
+
+                </div>
+                <div class="form-group">
+                    Enter amount of 5s
+                    <input type="number" id="amount5" name="amount5" placeholder="Enter amount 5s" min="0" step="1" value="0"">
+
+                </div>
+                <div class="form-group">
+                    Enter amount of 1s
+                    <input type="number" id="amount1" name="amount1" placeholder="Enter amount of 1s" min="0" step="1" value="0"">
+
                 </div>
                 <!-- Buttons -->
                 <div class="button-group">
                     <button type="submit">Submit</button>
-                    <button type="button" onclick="cancelWithdraw('/home')">Cancel</button>
+                    <button type="button" onclick="cancelDeposit('/home')">Cancel</button>
                 </div>
             </form>
         </div>
@@ -175,7 +194,7 @@
 
     <script>
         // Function to handle cancel button
-        function cancelWithdraw(destination) {
+        function cancelDeposit(destination) {
             window.location.href = window.location.href = window.location.pathname.replace('/withdraw', destination); // Redirect to home page
         }
     </script>

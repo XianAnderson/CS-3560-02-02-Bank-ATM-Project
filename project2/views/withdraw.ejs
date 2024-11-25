@@ -148,14 +148,14 @@
             <form id="numForm" method="post">
                 <!-- Account to withdraw from -->
                 <div class="form-group">
-                    <input type="radio" id="save" name="account" value="save">
-                    <label for="save">Savings</label>
-                </div>
-                <div class="form-group">
                     <input type="radio" id="check" name="account" value="check">
                     <label for="check">Checking</label>
                 </div>
-                <!-- Transfer amount -->
+                <div class="form-group">
+                    <input type="radio" id="save" name="account" value="save">
+                    <label for="save">Savings</label>
+                </div>
+                <!-- Withdraw amount -->
                 <div class="form-group">
                     <input type="number" id="amount" name="amount" placeholder="Enter amount (e.g., 12)" min="0" step="1">
                 </div>

@@ -58,16 +58,16 @@ router.post('/', (req, res) => {
             const sql = 'select checkingBalance from useraccount where accountId = ?';
             db.query(sql, [req.params.accountId], (err, results) => {
 
-                newBalance = results[0].checkingBalance + amount;
+                newBalance = (Math.round(results[0].checkingBalance * 100) + amount * 100) / 100;
 
-                const sql = 'update useraccount set savingsBalance = ? where accountId = ?';
+                const sql = 'update useraccount set checkingBalance = ? where accountId = ?';
                 db.query(sql, [newBalance, req.params.accountId], (err, results) => {
 
                     const sql = 'update atm set num100 = ?, num50 = ?, num20 = ?, num10 = ?, num5 = ?, num1 = ? where atmId = ?';
                     db.query(sql, [newHundreds, newFifties, newTwenties, newTens, newFives, newOnes, atmID], (err, results) => {
 
                         const sql = 'insert into transactions (transactionType, amount, sourceAccount, status, accountID, cardID, atmID) values (?, ?, ?, "completed", ?, 1, ?)';
-                        db.query(sql, ['deposit', amount, 'checkings', req.params.accountId, atmID], (err, results) => {
+                        db.query(sql, ['deposit', amount, 'checking', req.params.accountId, atmID], (err, results) => {
                             console.log("deposit update");
                             res.render('deposit');
 

@@ -104,9 +104,9 @@
             <!-- Button group for admin functionalities -->
             <div class="button-group">
                 <!-- Button for viewing ATM status -->
-                <button onclick="goToPage('/status')">ATM Status</button>
+                <button onclick="location.href='/admin/<%= workerID %>/status'">ATM Status</button>
                 <!-- Button for viewing ATM transaction history -->
-                <button onclick="goToPage('/transactions')">ATM Transactions History</button>
+                <button onclick="location.href='/admin/<%= workerID %>/transHistory'">ATM Transactions History</button>
                 <!-- Button for viewing ATM service history -->
                 <button onclick="goToPage('/serviceHistory')">ATM Service History</button>
                 <!-- Button for initiating ATM cash restock -->
@@ -117,7 +117,7 @@
             </div>
             <script>
               function goToPage(destination) {
-                  window.location.href = window.location.href = window.location.pathname.replace('/adminHome', destination);
+                  window.location.href = window.location.pathname.replace('/adminHome', destination);
               }
               function logOut() {
                   window.location.href = '/'

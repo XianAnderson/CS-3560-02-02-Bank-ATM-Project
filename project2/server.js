@@ -49,7 +49,12 @@ app.post('/', (req, res) => {
 
 // Import routes
 const adminLoginRouter = require('./routes/adminLogin'); // Admin login route
+const atmStatusRouter = require('./routes/atmStatusRouter'); // ATM status route
+const atmTransHistoryRouter = require('./routes/atmTransHistoryRouter'); // ATM transaction history route
+
 app.use('/admin', adminLoginRouter); // Mount admin routes on /admin
+app.use('/admin', atmStatusRouter); // Mount ATM status routes on /admin
+app.use('/admin', atmTransHistoryRouter); // Mount ATM transaction history routes on /admin
 
 // select what to do page
 app.get('/:accountId/:cardID/home/', (req, res) => {

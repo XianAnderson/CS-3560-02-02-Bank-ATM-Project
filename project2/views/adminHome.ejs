@@ -110,7 +110,7 @@
                 <!-- Button for viewing ATM service history -->
                 <button onclick="goToPage('/serviceHistory')">ATM Service History</button>
                 <!-- Button for initiating ATM cash restock -->
-                <button onclick="goToPage('/cashRestock')">ATM Cash Restock</button>
+                <button onclick="location.href='/admin/<%= workerID %>/fundManagement'">ATM Cash Restock</button>
                 <!-- Button for restarting the admin workflow (redirect to admin start) -->
                 <button onclick="logOut()">ATM Restart</button>
                 <button onclick="logOut()">Log Out</button>

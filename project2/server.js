@@ -71,6 +71,6 @@ const pinChangeRouter = require('./routes/pinChange');
 app.use('/:accountId/:cardID/pinChange', pinChangeRouter);
 
 const withdrawRouter = require('./routes/withdraw');
-app.use('/:accountId/withdraw',withdrawRouter);
+app.use('/:accountId/:cardID/withdraw',withdrawRouter);
 
 app.listen(3000);

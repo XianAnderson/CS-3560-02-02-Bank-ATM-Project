@@ -45,8 +45,9 @@ router.post('/', (req, res) => {
     
             // Update the database with the new PIN
             console.log('Pin change to', req.body.newPin);
-            const sql = 'UPDATE usercard SET pin = ? WHERE accountID = ?';
-            db.query(sql, [newPin, accountID], (err, results) => {
+            const sql = 'UPDATE usercard SET pin = ? WHERE cardID = ?';
+            db.query(sql, [newPin, cardID], (err, results) => {
+                // console.log(err,results)
                 console.log('Pin updated');
             });
             

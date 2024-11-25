@@ -5,81 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Change PIN</title>
     <style>
-        /* Apply the same styles as "home.ejs" */
+        /* Reset */
         body, html {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
         }
 
+        /* Main container */
         .container {
-            background-image: url('/images/beachBackground.jpg'); /* Adjust image path */
+            background-image: url('/images/beachBackground.jpg'); /* Same background image */
             background-size: cover;
             background-position: center;
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            color: white;
         }
 
-        .content-box {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 30px;
+        /* Heading styling */
+        .atm-heading {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Bank image styling */
+        .bank-image {
+            width: 120px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        /* Black box styling */
+        .transfer-box {
+            background-color: #000;
             border-radius: 20px;
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
-            width: 400px;
-            color: white;
+            width: 500px;
+            padding: 40px;
             text-align: center;
         }
 
-        .content-box h1 {
+        .transfer-box h2 {
+            font-size: 28px;
             margin-bottom: 20px;
-            font-size: 24px;
+            text-decoration: underline;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-align: left;
         }
 
         .form-group label {
-            display: block;
-            margin-bottom: 5px;
+            font-size: 18px;
         }
 
         .form-group input {
             width: 100%;
             padding: 10px;
-            border-radius: 5px;
-            border: none;
             font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background-color: #f2f2f2;
+            color: black;
         }
 
+        /* Button group styling */
         .button-group {
             display: flex;
             justify-content: space-between;
+            margin-top: 20px;
         }
 
         .button-group button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            background-color: #5a86d6;
             color: white;
-            background-color: #5a86d6; /* Blue button background */
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 48%;
         }
 
         .button-group button:hover {
-            background-color: #4669ad; /* Darker blue on hover */
+            background-color: #4669ad;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="content-box">
-            <h1>Change Your PIN</h1>
-          
+        <!-- ATM heading -->
+        <div class="atm-heading">ATM</div>
+
+        <!-- Bank image -->
+        <img src="/images/bankImage2.png" alt="Bank Icon" class="bank-image">
+        <!-- Black box -->
+        <div class="transfer-box">
+            <h2>Change Your PIN</h2>
+            
             <!-- Error message -->
             <% if (error) { %>
               <p style="color: red;"><%= error %></p>
@@ -91,20 +119,18 @@
             <% } %>
           
             <form id="numForm" method="post">
-              <div>
-                <label for="currentPin">Current PIN:</label>
-                <input type="password" name="currentPin" id="currentPin" required />
-              </div>
-          
-              <div>
-                <label for="newPin">New PIN:</label>
-                <input type="password" name="newPin" id="newPin" required />
-              </div>
-          
-              <div>
-                <label for="confirmPin">Confirm New PIN:</label>
-                <input type="password" name="confirmPin" id="confirmPin" required />
-              </div>
+                <div class="form-group">
+                    <label for="currentPin">Current PIN:</label>
+                    <input type="password" name="currentPin" id="currentPin" required />
+                </div>
+                <div class="form-group">
+                    <label for="newPin">New PIN:</label>
+                    <input type="password" name="newPin" id="newPin" required />
+                </div>
+                <div class="form-group">
+                    <label for="confirmPin">Confirm New PIN:</label>
+                    <input type="password" name="confirmPin" id="confirmPin" required />
+                </div>
                 <div class="button-group">
                     <button type="submit">Submit</button>
                     <button type="button" onclick="cancelButton('/home')">Cancel</button>
@@ -116,7 +142,7 @@
     <script>
         // Function to handle cancel button
         function cancelButton(destination) {
-            window.location.href = window.location.href = window.location.pathname.replace('/pinChange', destination); // Redirect to home page
+            window.location.href = window.location.href = window.location.pathname.replace('/pinChange', destination);
         }
     </script>
 </body>

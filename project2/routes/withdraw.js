@@ -16,10 +16,17 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     let account = req.body.account;
-    let amount = req.body.amount;
+    let amount = parseInt(req.body.amount);
+    let with100 = parseInt(req.body.amount100);
+    let with50 = parseInt(req.body.amount50);
+    let with20 = parseInt(req.body.amount20);
+    let with10 = parseInt(req.body.amount10);
+    let with5 = parseInt(req.body.amount5);
+    let with1 = parseInt(req.body.amount1);
     const atmIDLocation = 1;
     overdraft = false;
-    console.log('trying to withdraw ', amount , ' from ', account)
+
+    console.log('trying to withdraw', amount, 'from', account);
 
     if (account == "check") {
         const sql = 'select checkingBalance from useraccount where accountId = ?';
@@ -28,9 +35,12 @@ router.post('/', (req, res) => {
             //setting vars to int to avoid broken decimal math in javascript
 
             balance = Math.round(results[0].checkingBalance * 100);
-            amount = Math.round(amount * 100);
+
+            if (amount < with100 * 100 + with50 * 50 + with20 * 20 + with10 * 10 + with5 * 5 + with1) {
+                console.log('denom too high');
+            }
             //trying to withdraw too much from the account, so must check if possible to even withdraw that much money in later code
-            if (balance - amount < 0)
+            else if (balance - amount * 100 < 0)
                 overdraft = true;
             //you got enough money, so transaction goes through with update at end
             else {
@@ -42,95 +52,80 @@ router.post('/', (req, res) => {
                     ten = results[0].num10;
                     fiv = results[0].num5;
                     one = results[0].num1;
-                    maxWith = (hun * 100 + fif * 50 + twe * 20 + ten * 10 + fiv * 5 + one)
 
-                    //if not enough cash, get outta dodge
-                    if (amount - maxWith < 0) {
+                    if (hun < with100 | fif < with50 | twe < with20 | ten < with10 | fiv < with5 | one < with1) {
+                        console.error('atm has insufficient bills')
+                        res.render('withdraw', { checkingBalance: results[0].checkingBalance, savingsBalance: results[0].savingsBalance });
+                    }
+                    //if not enough cash
+                    else if (amount - (hun * 100 + fif * 50 + twe * 20 + ten * 10 + fiv * 5 + one) < 0) {
                         console.error('atm has insufficient funds')
-                        error = "Sorry, the ATM has insufficient funds"
-                        res.render('withdrawError', { error: error });
+                        res.render('withdraw', { checkingBalance: results[0].checkingBalance, savingsBalance: results[0].savingsBalance });
                     }
                     else {
-                        validWith = false;
-                        denom = [];
-                        do {
-                            //router stuff here?
+                        var floor = Math.floor;
+                        cashLeft = amount - with100 * 100 + with50 * 50 + with20 * 20 + with10 * 10 + with5 * 5 + with1;
+                        console.log(cashLeft);
 
-                            res.render('withdrawDenom')
+                        with100 = with100 + floor(cashLeft / 100);
+                        cashLeft = cashLeft % 100;
+                        if (hun < with100) {
+                            cashLeft += (with100 - hun);
+                            with100 = hun;
+                        }
 
-                            //code to get minimum denom from site here
-                            with100 = 0;
-                            with50 = 0;
-                            with20 = 0;
-                            with10 = 0;
-                            with5 = 0;
-                            with1 = 0;
-                            cashLeftWithdraw = amount - (with100 * 100 + with50 * 50 + with20 * 20 + with10 * 10 + with5 * 5 + with1)
+                        with50 = with50 + floor(cashLeft / 50);
+                        cashLeft = cashLeft % 50;
+                        if (hun < with50) {
+                            cashLeft += (with50 - fif);
+                            with50 = fif;
+                        }
 
-                            //check if min denom is possible with amount requested
-                            if (cashLeftWithdraw < 0) {
-                                //code for excess withdraw
-                            }
-                            //code for letting them know you can withdraw AT MOST 10 of each
-                            else if (with100 > 10 | with50 > 10 | with20 > 10 | with10 > 10 | with5 > 10 | with1 > 10) {
-                            }
-                            else {
-                                with100 = with100 + cashLeftWithdraw / 100;
-                                cashLeftWithdraw %= 100;
-                                if (with100 > hun) {
-                                    cashLeftWithdraw = cashLeftWithdraw + 100 * (with100 - hun)
-                                    with100 = hun
-                                }
+                        with20 = with20 + floor(cashLeft / 20);
+                        cashLeft = cashLeft % 20;
+                        if (twe < with20) {
+                            cashLeft += (with20 - twe);
+                            with20 = twe;
+                        }
 
-                                with50 = with50 + cashLeftWithdraw / 50;
-                                cashLeftWithdraw %= 50;
-                                if (with50 > hun) {
-                                    cashLeftWithdraw = cashLeftWithdraw + 50 * (with50 - fif)
-                                    with50 = fif
-                                }
+                        with10 = with10 + floor(cashLeft / 10);
+                        cashLeft = cashLeft % 10;
+                        if (ten < with10) {
+                            cashLeft += (with10 - ten);
+                            with10 = ten;
+                        }
 
-                                with20 = with20 + cashLeftWithdraw / 20;
-                                cashLeftWithdraw %= 20;
-                                if (with20 > twe) {
-                                    cashLeftWithdraw = cashLeftWithdraw + 20 * (with20 - twe);
-                                    with20 = twe;
-                                }
+                        with5 = with5 + floor(cashLeft / 5);
+                        cashLeft = cashLeft % 5;
+                        if (fif < with5) {
+                            cashLeft += (with5 - fiv);
+                            with5 = fiv;
+                        }
 
-                                with10 = with10 + cashLeftWithdraw / 10;
-                                cashLeftWithdraw %= 10;
-                                if (with10 > ten) {
-                                    cashLeftWithdraw = cashLeftWithdraw + 10 * (with10 - ten);
-                                    with10 = ten;
-                                }
+                        if (one < with1) {
+                            console.error('atm has insufficient bills for that denom')
+                            res.render('withdraw', { checkingBalance: results[0].checkingBalance, savingsBalance: results[0].savingsBalance });
+                        }
+                        else {
 
-                                with5 = with5 + cashLeftWithdraw / 5;
-                                cashLeftWithdraw %= 5;
-                                if (with5 > fiv) {
-                                    cashLeftWithdraw = cashLeftWithdraw + 5 * (with5 - fiv);
-                                    with5 = fiv;
-                                }
+                            //dispense (out of scope)
 
-                                with1 += cashLeftWithdraw;
-                                if (with1 > one) {
-                                    validWith = true;
-                                }
+                            //take away amount, and bring balance back to float
+                            balance -= (amount * 100);
+                            balance /= 100;
 
-                            }
-                        } while (!validWith);
 
-                        balance -= amount;
-                        //dispense (out of scope)
-
-                        const sql = 'update useraccount set checkingBalance = ? where accountId = ?';
-                        db.query(sql, [balance, req.params.accountId], (err, results) => {
-                            const sql = 'update atm set num100 = ?, num50 = ?, num20 = ?, num10 = ?, num5 = ?, num1 = ? where atmId = ?';
-                            db.query(sql, [hun - with100, fif - with100, twe - with20, ten - with10, fif - with5, one - with1, atmID], (err, results) => {
-                                const sql = 'insert into transactions (transactionType, amount, sourceAccount, status, accountID, cardID, atmID) values (?, ?, ?, "completed", ?, 1, ?)';
-                                db.query(sql, ['withdrawal', amount, 'checking', req.params.accountId, atmID], (err, results) => {
-                                    console.log("withdraw update");
+                            const sql = 'update useraccount set checkingBalance = ? where accountId = ?';
+                            db.query(sql, [balance, req.params.accountId], (err, results) => {
+                                const sql = 'update atm set num100 = ?, num50 = ?, num20 = ?, num10 = ?, num5 = ?, num1 = ? where atmId = ?';
+                                db.query(sql, [hun - with100, fif - with100, twe - with20, ten - with10, fif - with5, one - with1, atmID], (err, results) => {
+                                    const sql = 'insert into transactions (transactionType, amount, sourceAccount, status, accountID, cardID, atmID) values (?, ?, ?, "completed", ?, 1, ?)';
+                                    db.query(sql, ['withdrawal', amount, 'checking', req.params.accountId, atmID], (err, results) => {
+                                        console.log("withdraw update");
+                                    });
                                 });
                             });
-                        });
+                        }
                     }
                 });
             }
